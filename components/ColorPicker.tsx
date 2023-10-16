@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
 
 export type ColorPickerProps = {
   color: string,
@@ -9,7 +9,6 @@ export type ColorPickerProps = {
 
 export default function ColorPicker(props: ColorPickerProps): React.VFC {
   const { color, onChange } = props;
-  // const [color, setColor] = useState<string>("#000000");
 
   return (
     <div
@@ -20,7 +19,6 @@ export default function ColorPicker(props: ColorPickerProps): React.VFC {
         type="color"
         value={color}
         onChange={(e: any) => {
-          // setColor(e.target.value);
           if (onChange) {
             onChange(e.target.value);
           }
