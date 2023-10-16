@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 
 export type ColorPickerProps = {
-  onChange?: (color: string) => any
+  color: string,
+  onChange?: (color: string) => any;
 };
 
 export default function ColorPicker(props: ColorPickerProps): React.VFC {
-  const { onChange } = props;
-  const [color, setColor] = useState<string>("#000000");
+  const { color, onChange } = props;
+  // const [color, setColor] = useState<string>("#000000");
 
   return (
     <div
@@ -19,7 +20,7 @@ export default function ColorPicker(props: ColorPickerProps): React.VFC {
         type="color"
         value={color}
         onChange={(e: any) => {
-          setColor(e.target.value);
+          // setColor(e.target.value);
           if (onChange) {
             onChange(e.target.value);
           }

@@ -11,24 +11,31 @@ export default function ColorTable() {
 
   const onAddButtonPressed = (e: PressEvent) => {
     let newColors = [...colors];
-    newColors.push("#000000");
+    newColors.push('#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6));
     setColors(newColors);
+    console.log('add');
+    console.log(newColors);
   };
 
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col mb-8">
-        {colors.map((_: string, k: number) => {
+        {colors.map((color: string, k: number) => {
           const onColorChange = (c: string) => {
             let newColors = [...colors];
             newColors[k] = c;
             setColors(newColors);
-            console.log(newColors);
+          };
+          const onDeletePressed = (e: PressEvent) => {
+            let newColors = [...colors];
+            newColors = newColors.filter((_, i) => k != i);
+            setColors(newColors);
           };
 
           return (
             <div key={k} className="flex flex-row gap-4 items-center p-4">
               <ColorPicker
+                color={color}
                 onChange={onColorChange}
                 />
               <Snippet
@@ -37,6 +44,7 @@ export default function ColorTable() {
               >
                 {colors[k]}
               </Snippet>
+              <Button onPress={onDeletePressed}>Delete</Button>
             </div>
           );
         })}
