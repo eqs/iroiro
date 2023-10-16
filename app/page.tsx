@@ -1,22 +1,14 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { Button } from '@nextui-org/react';
 
-import ColorPicker from '@/components/ColorPicker';
+import ColorTable from '@/components/ColorTable';
 
 export default function Home() {
-  const [color, setColor] = useState<Color>();
-
-  const onColorChange = (c: string) => {
-    console.log(c);
-  };
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ColorPicker onChange={onColorChange} />
-      <Button>Click me</Button>
+    <main className="items-center justify-between m-24">
+      <ColorTable />
     </main>
   )
 }
