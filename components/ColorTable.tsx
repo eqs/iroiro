@@ -64,7 +64,7 @@ export default function ColorTable() {
   useEffect(() => {
     if (hasCookie("cls")) {
       const cls = getCookie("cls");
-      setColors(cls.split(","));
+      setColors(cls ? cls.split(",") : []);
     } else {
       setColors([]);
     }
