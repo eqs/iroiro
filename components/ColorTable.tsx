@@ -1,4 +1,7 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
+import { getCookie, setCookie, hasCookie } from 'cookies-next';
 import { Button, PressEvent, Snippet } from '@nextui-org/react';
 import ColorPicker from '@/components/ColorPicker';
 
@@ -6,13 +9,19 @@ export default function ColorTable() {
   const [colors, setColors] = useState<string[]>([]);
 
   useEffect(() => {
-    setColors(["#000000"]);
+    if (hasCookie("cls")) {
+      const cls = getCookie("cls");
+      setColors(cls.split(","));
+    } else {
+      setColors([]);
+    }
   }, []);
 
   const onAddButtonPressed = (e: PressEvent) => {
     let newColors = [...colors];
     newColors.push('#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6));
     setColors(newColors);
+    setCookie('cls', newColors.toString());
   };
 
   return (
@@ -23,11 +32,13 @@ export default function ColorTable() {
             let newColors = [...colors];
             newColors[k] = c;
             setColors(newColors);
+            setCookie('cls', newColors.toString());
           };
           const onDeletePressed = (e: PressEvent) => {
             let newColors = [...colors];
             newColors = newColors.filter((_, i) => k != i);
             setColors(newColors);
+            setCookie('cls', newColors.toString());
           };
 
           return (
