@@ -18,6 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="light">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon512_maskable.png" />
+        <meta name="theme-color" content="#f6f6f6" />
+      </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
