@@ -1,7 +1,6 @@
 # Iroiro
 
 <p align="center">
-  <a href="https://iroiro.eqseqs.work" target="_blank" />
+  <a href="https://iroiro.eqseqs.work" target="_blank">https://iroiro.eqseqs.work</a>
+  <img src="doc/iroiro-demo.gif" />
 </p>
-
-![demo](doc/iroiro-demo.gif)
