@@ -1,13 +1,11 @@
 'use client'
 
-import React from 'react';
-
 export type ColorPickerProps = {
   color: string,
   onChange?: (color: string) => any;
 };
 
-export default function ColorPicker(props: ColorPickerProps): React.VFC {
+export default function ColorPicker(props: ColorPickerProps) {
   const { color, onChange } = props;
 
   return (

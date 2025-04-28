@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCookie, setCookie, hasCookie } from 'cookies-next';
 import {
-  Button, PressEvent, Snippet,
+  Button, Snippet,
   Dropdown, DropdownTrigger, DropdownMenu, DropdownItem
 } from '@nextui-org/react';
 import ColorPicker from '@/components/ColorPicker';
@@ -24,17 +24,17 @@ function toFloatTuple(color: string) {
   return `(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
 }
 
-const COLOR_CONVS = {
+const COLOR_CONVS: { [key: string]: (name: string) => string } = {
   "code": (c: string) => c,
   "u8": toIntTuple,
   "f32": toFloatTuple,
 };
 
 type ColorConversionSelectDropdownProps = {
-  onAction: (key: string) => void
+  onAction: (key: any) => void
 };
 
-function ColorConversionSelectDropdown(props: ColorConversionSelectDropdown) {
+function ColorConversionSelectDropdown(props: ColorConversionSelectDropdownProps) {
   const { onAction } = props;
   return (
     <Dropdown>
@@ -70,7 +70,7 @@ export default function ColorTable() {
     }
   }, []);
 
-  const onAddButtonPressed = (e: PressEvent) => {
+  const onAddButtonPressed = (e: any) => {
     let newColors = [...colors];
     newColors.push('#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6));
     setColors(newColors);
@@ -92,7 +92,7 @@ export default function ColorTable() {
             setColors(newColors);
             setCookie('cls', newColors.toString());
           };
-          const onDeletePressed = (e: PressEvent) => {
+          const onDeletePressed = (e: any) => {
             let newColors = [...colors];
             newColors = newColors.filter((_, i) => k != i);
             setColors(newColors);
@@ -107,7 +107,7 @@ export default function ColorTable() {
                 />
               <Snippet
                 className="w-64"
-                variant="bordered" hideSymbol="true"
+                variant="bordered" hideSymbol
               >
                 {COLOR_CONVS[convKey](colors[k])}
               </Snippet>
